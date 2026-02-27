@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DialTrader — The Watch Trader's Operating System</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNzAwIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjMEEwQTBBIi8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMzMwIiByPSIyMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0M5QTg0QyIgc3Ryb2tlLXdpZHRoPSI1MCIvPjxsaW5lIHgxPSIzMDAiIHkxPSIzMzAiIHgyPSIyNTAiIHkyPSIyNjAiIHN0cm9rZT0iI0M5QTg0QyIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjMwMCIgeTE9IjMzMCIgeDI9IjM4MCIgeTI9IjI1MCIgc3Ryb2tlPSIjQzlBODRDIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0A0A0A;--surface:#111111;--surface2:#181818;--border:#222222;--border2:#2A2A2A;
+  --text:#F0EDE8;--text2:#888880;--text3:#555550;
+  --gold:#C9A84C;--gold2:#E5C96A;--gold-dim:rgba(201,168,76,0.1);--gold-dim2:rgba(201,168,76,0.06);
+  --green:#4A9A6A;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.3s;}
+nav.scrolled{background:rgba(10,10,10,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);text-decoration:none;}
+.nav-logo span{font-style:italic;color:var(--gold);}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--text2);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-btn{background:var(--gold);color:#000 !important;padding:0.5rem 1.25rem;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;text-decoration:none;transition:all 0.2s;}
+.nav-btn:hover{background:var(--gold2) !important;}
+.nav-login{background:none !important;color:var(--text2) !important;border:1px solid var(--border2);padding:0.5rem 1.25rem;}
+.nav-login:hover{border-color:var(--gold) !important;color:var(--gold) !important;}
+
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 6rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,0.07) 0%,transparent 70%);}
+.hero-ring{position:absolute;border-radius:50%;border:1px solid rgba(201,168,76,0.06);top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-content{position:relative;z-index:1;max-width:860px;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;font-weight:600;opacity:0;animation:fadeUp 0.8s ease 0.2s forwards;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,5.5rem);font-weight:500;line-height:1.1;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s ease 0.4s forwards;}
+.hero-title em{font-style:italic;color:var(--gold2);}
+.hero-sub{font-size:1rem;color:var(--text2);line-height:1.8;max-width:560px;margin:0 auto 2.5rem;opacity:0;animation:fadeUp 0.8s ease 0.6s forwards;}
+.hero-sub strong{color:var(--text);font-weight:600;}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s ease 0.8s forwards;}
+.btn-primary{background:var(--gold);color:#000;padding:0.9rem 2.25rem;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;text-decoration:none;transition:all 0.2s;display:inline-block;}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--text2);padding:0.9rem 2.25rem;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;text-decoration:none;border:1px solid var(--border2);transition:all 0.2s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-scroll{margin-top:4rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:fadeUp 0.8s ease 1s forwards;}
+.hero-scroll-label{font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text3);}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);}
+
+.app-preview{padding:0 2rem 6rem;}
+.app-preview-inner{max-width:1100px;margin:0 auto;}
+.app-frame{background:var(--surface);border:1px solid var(--border2);overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,0.6),0 0 0 1px rgba(201,168,76,0.1);}
+.app-frame-bar{background:#1A1A1A;height:36px;display:flex;align-items:center;padding:0 1rem;gap:0.5rem;border-bottom:1px solid var(--border);}
+.app-dot{width:10px;height:10px;border-radius:50%;}
+.app-frame-url{flex:1;background:#111;height:20px;border-radius:3px;margin:0 1rem;display:flex;align-items:center;padding:0 0.6rem;}
+.app-frame-url span{font-size:0.62rem;color:var(--text3);font-family:monospace;}
+.app-mockup{display:flex;height:500px;}
+.app-sidebar-mock{width:190px;min-width:190px;background:#0E0E0E;border-right:1px solid var(--border);padding:1rem 0;display:flex;flex-direction:column;gap:1px;}
+.mock-logo{padding:0 1.1rem 1rem;font-family:'Playfair Display',serif;font-size:0.85rem;letter-spacing:0.1em;color:var(--text);border-bottom:1px solid var(--border);margin-bottom:0.5rem;}
+.mock-logo span{font-style:italic;color:var(--gold);}
+.mock-nav-item{padding:0.45rem 1.1rem;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:0.5rem;font-weight:600;}
+.mock-nav-item.active{color:var(--gold);background:rgba(201,168,76,0.06);}
+.mock-sec{padding:0.7rem 1.1rem 0.2rem;font-size:0.48rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);}
+.app-main-mock{flex:1;padding:1.25rem;overflow:hidden;display:flex;flex-direction:column;gap:0.9rem;}
+.mock-page-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text);}
+.mock-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;}
+.mock-stat{background:var(--surface2);border:1px solid var(--border);padding:0.65rem;border-left:2px solid var(--gold);}
+.mock-stat-val{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold2);margin-bottom:0.1rem;}
+.mock-stat-label{font-size:0.46rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);}
+.mock-th-row{display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;gap:0.4rem;padding:0.35rem 0.4rem;border-bottom:1px solid var(--border);}
+.mock-th{font-size:0.46rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);font-weight:600;}
+.mock-row{display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;gap:0.4rem;padding:0.45rem 0.4rem;border-bottom:1px solid rgba(255,255,255,0.03);align-items:center;}
+.mock-brand{font-size:0.48rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);}
+.mock-model{font-size:0.66rem;font-weight:500;}
+.mock-cell{font-size:0.62rem;color:var(--text2);}
+.mock-stage{font-size:0.46rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.12rem 0.35rem;background:rgba(201,168,76,0.1);color:var(--gold);font-weight:600;}
+.mock-profit{font-size:0.62rem;color:var(--green);}
+
+section{position:relative;}
+.section-inner{max-width:1200px;margin:0 auto;padding:7rem 2rem;}
+.section-eyebrow{font-size:0.58rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;font-weight:600;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:500;line-height:1.2;margin-bottom:1rem;}
+.section-title em{font-style:italic;color:var(--gold2);}
+.section-rule{width:40px;height:1px;background:var(--gold);margin-bottom:2rem;opacity:0.6;}
+.section-sub{font-size:0.88rem;color:var(--text2);line-height:1.9;max-width:520px;}
+
+#features{background:var(--surface);}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border);}
+.feature-item{background:var(--surface);padding:2.5rem 2rem;transition:background 0.2s;}
+.feature-item:hover{background:var(--surface2);}
+.feature-icon{font-size:1.8rem;margin-bottom:1.25rem;}
+.feature-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;margin-bottom:0.75rem;}
+.feature-desc{font-size:0.78rem;color:var(--text2);line-height:1.8;}
+.feature-tag{display:inline-block;font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim2);padding:0.2rem 0.5rem;margin-top:0.75rem;font-weight:600;}
+
+.pipeline-list{display:flex;flex-direction:column;gap:1px;background:var(--border);}
+.pipeline-item{background:var(--surface);padding:0.85rem 1.5rem;display:flex;align-items:center;gap:1.25rem;transition:background 0.15s;}
+.pipeline-item:hover{background:var(--surface2);}
+.pipeline-num{width:32px;height:32px;min-width:32px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--text2);font-weight:600;}
+.pipeline-item.done .pipeline-num{border-color:var(--green);color:var(--green);}
+.pipeline-item.active .pipeline-num{border-color:var(--gold);color:var(--gold);background:var(--gold-dim);}
+.pipeline-item-label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:var(--text);}
+.pipeline-item-desc{font-size:0.7rem;color:var(--text3);}
+
+#storefront{background:var(--surface);}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.sf-mockup{background:var(--bg);border:1px solid var(--border2);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+.sf-head{background:#1A1A1A;padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);}
+.sf-logo-mock{font-family:'Playfair Display',serif;font-size:0.95rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+.sf-tag-mock{font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);margin-top:0.15rem;}
+.sf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.sf-watch{background:var(--surface);padding:0.75rem;}
+.sf-watch-img{height:56px;background:linear-gradient(135deg,#1A1A1A,#252525);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:0.5rem;}
+.sf-watch-brand{font-size:0.44rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);}
+.sf-watch-model{font-size:0.6rem;font-weight:600;margin:0.1rem 0 0.2rem;}
+.sf-watch-price{font-size:0.56rem;color:var(--text2);}
+.points{display:flex;flex-direction:column;gap:0.75rem;margin-top:1.5rem;}
+.point{display:flex;gap:0.75rem;align-items:flex-start;}
+.point-dot{width:5px;height:5px;min-width:5px;background:var(--gold);border-radius:50%;margin-top:0.45rem;}
+.point-text{font-size:0.78rem;color:var(--text2);line-height:1.7;}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem;}
+.pricing-card{background:var(--surface);border:1px solid var(--border2);padding:2.5rem 2rem;position:relative;transition:all 0.3s;}
+.pricing-card.featured{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,0.05),var(--surface));}
+.pricing-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-size:0.52rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;padding:0.3rem 1rem;white-space:nowrap;}
+.pricing-tier{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);font-weight:600;margin-bottom:0.75rem;}
+.pricing-price{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--text);line-height:1;}
+.pricing-price sup{font-size:1.2rem;vertical-align:top;margin-top:0.4rem;color:var(--text2);}
+.pricing-price span{font-size:0.72rem;color:var(--text3);font-family:'Raleway',sans-serif;}
+.pricing-desc{font-size:0.75rem;color:var(--text2);margin:1rem 0 1.5rem;line-height:1.7;}
+.pricing-rule{height:1px;background:var(--border);margin-bottom:1.5rem;}
+.pricing-features{list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2rem;}
+.pricing-features li{font-size:0.75rem;color:var(--text2);display:flex;gap:0.5rem;align-items:flex-start;line-height:1.5;}
+.pricing-features li::before{content:'—';color:var(--gold);font-size:0.7rem;margin-top:0.05rem;flex-shrink:0;}
+.pricing-cta{display:block;text-align:center;padding:0.8rem;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;text-decoration:none;transition:all 0.2s;border:1px solid var(--border2);color:var(--text2);}
+.pricing-cta:hover{border-color:var(--gold);color:var(--gold);}
+.pricing-card.featured .pricing-cta{background:var(--gold);color:#000;border-color:var(--gold);}
+.pricing-card.featured .pricing-cta:hover{background:var(--gold2);}
+
+#cta{background:linear-gradient(135deg,rgba(201,168,76,0.06) 0%,transparent 60%);}
+footer{border-top:1px solid var(--border);padding:3rem 2rem;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text2);}
+.footer-logo span{font-style:italic;color:var(--gold);}
+.footer-links{display:flex;gap:2rem;}
+.footer-links a{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:0.62rem;color:var(--text3);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}.d4{transition-delay:0.4s;}
+
+@media(max-width:900px){
+  .nav-links a:not(.nav-btn){display:none;}
+  .features-grid{grid-template-columns:1fr 1fr;}
+  .split{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .app-sidebar-mock{display:none;}
+  .mock-stat-row{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .hero-title{font-size:2.4rem;}
+  .features-grid{grid-template-columns:1fr;}
+  .footer-inner{flex-direction:column;text-align:center;}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:1rem;}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="/" class="nav-logo">Dial<span>Trader</span></a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#pipeline">Pipeline</a>
+    <a href="#pricing">Pricing</a>
+    <a href="https://app.dialtrader.com" class="nav-login nav-btn">Login</a>
+    <a href="https://app.dialtrader.com" class="nav-btn">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ring" style="width:600px;height:600px;"></div>
+  <div class="hero-ring" style="width:900px;height:900px;opacity:0.5;"></div>
+  <div class="hero-ring" style="width:1300px;height:1300px;opacity:0.2;"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">The Watch Trader's Operating System</div>
+    <h1 class="hero-title">Every Watch.<br>Every Deal.<br><em>One Place.</em></h1>
+    <p class="hero-sub">Track inventory, manage the deal pipeline, generate professional invoices, and publish a <strong>live storefront</strong> — built specifically for pre-owned watch traders.</p>
+    <div class="hero-actions">
+      <a href="https://app.dialtrader.com" class="btn-primary">Start Free →</a>
+      <a href="#features" class="btn-ghost">See Features</a>
+    </div>
+    <div class="hero-scroll">
+      <span class="hero-scroll-label">Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- APP MOCKUP -->
+<div class="app-preview">
+  <div class="app-preview-inner">
+    <div class="app-frame reveal">
+      <div class="app-frame-bar">
+        <div class="app-dot" style="background:#FF5F57"></div>
+        <div class="app-dot" style="background:#FEBC2E"></div>
+        <div class="app-dot" style="background:#28C840"></div>
+        <div class="app-frame-url"><span>app.dialtrader.com</span></div>
+      </div>
+      <div class="app-mockup">
+        <div class="app-sidebar-mock">
+          <div class="mock-logo">Dial<span>Trader</span></div>
+          <div class="mock-sec">Trading</div>
+          <div class="mock-nav-item active"><span>📊</span>Dashboard</div>
+          <div class="mock-nav-item"><span>⌚</span>Inventory</div>
+          <div class="mock-nav-item"><span>📈</span>Pipeline</div>
+          <div class="mock-nav-item"><span>✅</span>Sold History</div>
+          <div class="mock-sec">Business</div>
+          <div class="mock-nav-item"><span>👤</span>Contacts</div>
+          <div class="mock-nav-item"><span>📄</span>Invoices</div>
+          <div class="mock-sec">Tools</div>
+          <div class="mock-nav-item"><span>🌐</span>My Storefront</div>
+          <div class="mock-nav-item"><span>💰</span>Tax Report</div>
+        </div>
+        <div class="app-main-mock">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="mock-page-title">Inventory</div>
+            <div style="background:var(--gold);color:#000;font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;padding:0.3rem 0.8rem;cursor:pointer">+ Add Watch</div>
+          </div>
+          <div class="mock-stat-row">
+            <div class="mock-stat"><div class="mock-stat-val">$68,300</div><div class="mock-stat-label">Capital Deployed</div></div>
+            <div class="mock-stat"><div class="mock-stat-val">$13,400</div><div class="mock-stat-label">YTD Profit</div></div>
+            <div class="mock-stat"><div class="mock-stat-val">19.6%</div><div class="mock-stat-label">Avg ROI</div></div>
+            <div class="mock-stat"><div class="mock-stat-val">5</div><div class="mock-stat-label">Active Watches</div></div>
+          </div>
+          <div class="mock-th-row">
+            <div class="mock-th">Watch</div><div class="mock-th">Stage</div><div class="mock-th">Cost</div><div class="mock-th">Listed</div><div class="mock-th">P&L</div>
+          </div>
+          <div class="mock-row"><div><div class="mock-brand">Rolex</div><div class="mock-model">Submariner 126610LN</div></div><div class="mock-cell"><span class="mock-stage">Listed</span></div><div class="mock-cell">$12,500</div><div class="mock-cell">$14,900</div><div class="mock-profit">+$2,400</div></div>
+          <div class="mock-row"><div><div class="mock-brand">Omega</div><div class="mock-model">Speedmaster 3570.50</div></div><div class="mock-cell"><span class="mock-stage">Acquired</span></div><div class="mock-cell">$4,200</div><div class="mock-cell">$5,500</div><div class="mock-profit">+$1,300</div></div>
+          <div class="mock-row"><div><div class="mock-brand">Patek Philippe</div><div class="mock-model">Aquanaut 5167A</div></div><div class="mock-cell"><span class="mock-stage">Negotiating</span></div><div class="mock-cell">$28,000</div><div class="mock-cell">$33,500</div><div class="mock-profit">+$5,500</div></div>
+          <div class="mock-row"><div><div class="mock-brand">AP</div><div class="mock-model">Royal Oak 15400ST</div></div><div class="mock-cell"><span class="mock-stage">Listed</span></div><div class="mock-cell">$19,800</div><div class="mock-cell">$24,000</div><div class="mock-profit">+$4,200</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Everything You Need</div>
+      <h2 class="section-title">Built by a Trader,<br><em>for Traders</em></h2>
+      <div class="section-rule"></div>
+      <p class="section-sub">Every feature was designed to solve a real problem in the watch trading workflow — from the moment you buy to the moment the profit hits.</p>
+    </div>
+    <div class="features-grid" style="margin-top:4rem">
+      <div class="feature-item reveal d1"><div class="feature-icon">⌚</div><div class="feature-title">Full Inventory Management</div><div class="feature-desc">Track every watch with purchase price, all fees, photos, condition, box & papers, and linked contacts. Know your true cost basis and capital deployed at a glance.</div><div class="feature-tag">Cost Basis · Photos · Contacts</div></div>
+      <div class="feature-item reveal d2"><div class="feature-icon">📈</div><div class="feature-title">10-Stage Deal Pipeline</div><div class="feature-desc">Move watches from Sourcing through Acquired, Authenticated, Listed, Negotiating, all the way to Delivered & Paid. Know exactly where every deal stands.</div><div class="feature-tag">Kanban · Stage Tracking</div></div>
+      <div class="feature-item reveal d3"><div class="feature-icon">🌐</div><div class="feature-title">One-Click Storefront</div><div class="feature-desc">Your inventory automatically powers a live public storefront branded to you. Deploy to your own domain in under 5 minutes — no separate website needed.</div><div class="feature-tag">Vercel · Custom Domain · Free Hosting</div></div>
+      <div class="feature-item reveal d1"><div class="feature-icon">📄</div><div class="feature-title">Professional Invoices</div><div class="feature-desc">Generate PDF invoices with your branding instantly. Track paid/unpaid status across Zelle, Venmo, wire, and Apple Pay. Keep every invoice organized in one place.</div><div class="feature-tag">PDF · Multi-payment · Tracking</div></div>
+      <div class="feature-item reveal d2"><div class="feature-icon">👥</div><div class="feature-title">Contact CRM</div><div class="feature-desc">Every buyer and seller in one searchable, filterable list. See their full transaction history, total volume, and profit per relationship. Export for campaigns.</div><div class="feature-tag">Buyers · Sellers · Campaign Export</div></div>
+      <div class="feature-item reveal d3"><div class="feature-icon">💰</div><div class="feature-title">Tax & P&L Reports</div><div class="feature-desc">Filterable P&L by tax year with total revenue, cost basis, gross profit, average ROI, and days held. Export a clean CSV for your accountant at year end.</div><div class="feature-tag">Schedule C · CSV · Year Filter</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section id="pipeline">
+  <div class="section-inner">
+    <div class="split">
+      <div class="reveal">
+        <div class="section-eyebrow">Deal Pipeline</div>
+        <h2 class="section-title">Know Where Every Watch<br><em>Stands Right Now</em></h2>
+        <div class="section-rule"></div>
+        <p class="section-sub">Ten stages take a watch from initial sourcing all the way to delivered and paid. Move deals forward with one tap. Never lose track of where something is.</p>
+        <div style="margin-top:2rem">
+          <a href="https://app.dialtrader.com" class="btn-primary">Try It Free →</a>
+        </div>
+      </div>
+      <div class="pipeline-list reveal d2">
+        <div class="pipeline-item active"><div class="pipeline-num">1</div><div><div class="pipeline-item-label">Sourcing</div><div class="pipeline-item-desc">Potential deal identified</div></div></div>
+        <div class="pipeline-item"><div class="pipeline-num">2</div><div><div class="pipeline-item-label">Acquired</div><div class="pipeline-item-desc">Watch purchased, in hand</div></div></div>
+        <div class="pipeline-item"><div class="pipeline-num">3</div><div><div class="pipeline-item-label">Authenticated</div><div class="pipeline-item-desc">Condition & papers verified</div></div></div>
+        <div class="pipeline-item"><div class="pipeline-num">5</div><div><div class="pipeline-item-label">Listed</div><div class="pipeline-item-desc">Active on marketplace or storefront</div></div></div>
+        <div class="pipeline-item"><div class="pipeline-num">7</div><div><div class="pipeline-item-label">Sale Agreed</div><div class="pipeline-item-desc">Price locked, invoice sent</div></div></div>
+        <div class="pipeline-item"><div class="pipeline-num">9</div><div><div class="pipeline-item-label">Shipped</div><div class="pipeline-item-desc">In transit to buyer</div></div></div>
+        <div class="pipeline-item done"><div class="pipeline-num">10</div><div><div class="pipeline-item-label" style="color:var(--green)">Delivered & Paid</div><div class="pipeline-item-desc">Deal complete, profit recorded</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STOREFRONT -->
+<section id="storefront">
+  <div class="section-inner">
+    <div class="split">
+      <div class="sf-mockup reveal">
+        <div class="sf-head">
+          <div class="sf-logo-mock">SourceMax <span style="font-style:italic">Luxury</span></div>
+          <div class="sf-tag-mock">Pre-Owned Luxury Timepieces · Conway, AR</div>
+        </div>
+        <div class="sf-grid">
+          <div class="sf-watch"><div class="sf-watch-img">⌚</div><div class="sf-watch-brand">Rolex</div><div class="sf-watch-model">Submariner</div><div class="sf-watch-price">$14,900</div></div>
+          <div class="sf-watch"><div class="sf-watch-img">🕐</div><div class="sf-watch-brand">Omega</div><div class="sf-watch-model">Speedmaster</div><div class="sf-watch-price">$5,500</div></div>
+          <div class="sf-watch"><div class="sf-watch-img">⌚</div><div class="sf-watch-brand">Patek</div><div class="sf-watch-model">Aquanaut</div><div class="sf-watch-price">$33,500</div></div>
+          <div class="sf-watch"><div class="sf-watch-img">🕐</div><div class="sf-watch-brand">AP</div><div class="sf-watch-model">Royal Oak</div><div class="sf-watch-price">$24,000</div></div>
+          <div class="sf-watch"><div class="sf-watch-img">⌚</div><div class="sf-watch-brand">Tudor</div><div class="sf-watch-model">Black Bay 58</div><div class="sf-watch-price">$3,900</div></div>
+          <div class="sf-watch"><div class="sf-watch-img">🕐</div><div class="sf-watch-brand">IWC</div><div class="sf-watch-model">Portugieser</div><div class="sf-watch-price">$8,200</div></div>
+        </div>
+      </div>
+      <div class="reveal d2">
+        <div class="section-eyebrow">Your Public Storefront</div>
+        <h2 class="section-title">A Live Website,<br><em>Already Built</em></h2>
+        <div class="section-rule"></div>
+        <p class="section-sub">Add a watch to inventory and it instantly appears on your branded storefront. Deploy to your own domain in minutes — no coding, no monthly website fees.</p>
+        <div class="points">
+          <div class="point"><div class="point-dot"></div><div class="point-text">Updates live as you add, edit, or sell watches</div></div>
+          <div class="point"><div class="point-dot"></div><div class="point-text">6 color themes and 5 font pairings — styled to match your brand</div></div>
+          <div class="point"><div class="point-dot"></div><div class="point-text">Built-in inquiry form so buyers can contact you directly</div></div>
+          <div class="point"><div class="point-dot"></div><div class="point-text">Recently Sold section to show track record and build trust</div></div>
+          <div class="point"><div class="point-dot"></div><div class="point-text">Free hosting on Vercel — deploy to your own domain in 5 minutes</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="section-eyebrow">Pricing</div>
+      <h2 class="section-title">Simple, <em>Honest</em> Pricing</h2>
+      <div class="section-rule" style="margin:0 auto 1.5rem"></div>
+      <p class="section-sub" style="margin:0 auto">No percentage cuts on your deals. No per-transaction fees. Just a flat monthly rate for the tools you need.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal d1">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price"><sup>$</sup>0<span> / mo</span></div>
+        <div class="pricing-desc">Everything you need to track your trades and run your business.</div>
+        <div class="pricing-rule"></div>
+        <ul class="pricing-features">
+          <li>Full inventory management</li>
+          <li>10-stage deal pipeline</li>
+          <li>Sold history & P&L tracking</li>
+          <li>Contact CRM</li>
+          <li>Invoice generation & tracking</li>
+          <li>Tax report & CSV export</li>
+          <li>Smart CSV import</li>
+        </ul>
+        <a href="https://app.dialtrader.com" class="pricing-cta">Get Started Free</a>
+      </div>
+      <div class="pricing-card featured reveal d2">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-tier">Professional</div>
+        <div class="pricing-price"><sup>$</sup>19<span> / mo</span></div>
+        <div class="pricing-desc">Add a live branded storefront and take your business public.</div>
+        <div class="pricing-rule"></div>
+        <ul class="pricing-features">
+          <li>Everything in Starter</li>
+          <li>Live public storefront</li>
+          <li>Custom domain support</li>
+          <li>6 themes & 5 font pairings</li>
+          <li>Buyer inquiry form</li>
+          <li>Recently Sold section</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="https://app.dialtrader.com" class="pricing-cta">Start Free Trial</a>
+      </div>
+      <div class="pricing-card reveal d3">
+        <div class="pricing-tier">Teams — Coming Soon</div>
+        <div class="pricing-price" style="font-size:1.8rem;padding-top:0.4rem;line-height:1.2">Multi-User<br>Access</div>
+        <div class="pricing-desc">Shared inventory, multiple users, and advanced reporting for growing operations.</div>
+        <div class="pricing-rule"></div>
+        <ul class="pricing-features">
+          <li>Everything in Professional</li>
+          <li>Multiple team members</li>
+          <li>Shared inventory pool</li>
+          <li>Role-based permissions</li>
+          <li>Advanced analytics dashboard</li>
+          <li>Dedicated support</li>
+        </ul>
+        <a href="mailto:nmtarbiz@gmail.com?subject=DialTrader Teams Waitlist" class="pricing-cta">Join Waitlist</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="section-inner" style="text-align:center">
+    <div class="reveal" style="max-width:640px;margin:0 auto">
+      <div class="section-eyebrow">Ready to Start?</div>
+      <h2 class="section-title">Your Entire Watch Business,<br><em>Organized Today</em></h2>
+      <p class="section-sub" style="margin:0 auto 2.5rem">Import your existing inventory in minutes using any spreadsheet. Free forever on the Starter plan — no credit card required.</p>
+      <div class="hero-actions">
+        <a href="https://app.dialtrader.com" class="btn-primary">Create Free Account →</a>
+        <a href="https://app.dialtrader.com" class="btn-ghost">Member Login</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Dial<span>Trader</span></div>
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://app.dialtrader.com">App Login</a>
+      <a href="mailto:nmtarbiz@gmail.com">Contact</a>
+    </div>
+    <div class="footer-copy">© 2025 DialTrader · Built for watch traders</div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>50);
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
