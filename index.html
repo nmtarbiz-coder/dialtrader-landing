@@ -18,6 +18,7 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Raleway',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
 
+/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.3s;}
 nav.scrolled{background:rgba(10,10,10,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);text-decoration:none;}
@@ -30,6 +31,7 @@ nav.scrolled{background:rgba(10,10,10,0.95);border-bottom:1px solid var(--border
 .nav-login{background:none !important;color:var(--text2) !important;border:1px solid var(--border2);padding:0.5rem 1.25rem;}
 .nav-login:hover{border-color:var(--gold) !important;color:var(--gold) !important;}
 
+/* ── HERO ── */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 6rem;position:relative;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,0.07) 0%,transparent 70%);}
 .hero-ring{position:absolute;border-radius:50%;border:1px solid rgba(201,168,76,0.06);top:50%;left:50%;transform:translate(-50%,-50%);}
@@ -44,10 +46,12 @@ nav.scrolled{background:rgba(10,10,10,0.95);border-bottom:1px solid var(--border
 .btn-primary:hover{background:var(--gold2);transform:translateY(-1px);}
 .btn-ghost{background:transparent;color:var(--text2);padding:0.9rem 2.25rem;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;text-decoration:none;border:1px solid var(--border2);transition:all 0.2s;display:inline-block;}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
-.hero-scroll{margin-top:4rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:fadeUp 0.8s ease 1s forwards;}
+.hero-trial-note{font-size:0.62rem;color:var(--text3);margin-top:1rem;letter-spacing:0.06em;opacity:0;animation:fadeUp 0.8s ease 1s forwards;}
+.hero-scroll{margin-top:3.5rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:fadeUp 0.8s ease 1.1s forwards;}
 .hero-scroll-label{font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text3);}
 .hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);}
 
+/* ── APP MOCKUP ── */
 .app-preview{padding:0 2rem 6rem;}
 .app-preview-inner{max-width:1100px;margin:0 auto;}
 .app-frame{background:var(--surface);border:1px solid var(--border2);overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,0.6),0 0 0 1px rgba(201,168,76,0.1);}
@@ -77,6 +81,7 @@ nav.scrolled{background:rgba(10,10,10,0.95);border-bottom:1px solid var(--border
 .mock-stage{font-size:0.46rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.12rem 0.35rem;background:rgba(201,168,76,0.1);color:var(--gold);font-weight:600;}
 .mock-profit{font-size:0.62rem;color:var(--green);}
 
+/* ── SECTIONS ── */
 section{position:relative;}
 .section-inner{max-width:1200px;margin:0 auto;padding:7rem 2rem;}
 .section-eyebrow{font-size:0.58rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;font-weight:600;}
@@ -85,15 +90,18 @@ section{position:relative;}
 .section-rule{width:40px;height:1px;background:var(--gold);margin-bottom:2rem;opacity:0.6;}
 .section-sub{font-size:0.88rem;color:var(--text2);line-height:1.9;max-width:520px;}
 
+/* ── FEATURES ── */
 #features{background:var(--surface);}
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border);}
 .feature-item{background:var(--surface);padding:2.5rem 2rem;transition:background 0.2s;}
 .feature-item:hover{background:var(--surface2);}
-.feature-icon{font-size:1.8rem;margin-bottom:1.25rem;}
+.feature-icon-wrap{width:44px;height:44px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;}
+.feature-icon-wrap svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5;}
 .feature-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;margin-bottom:0.75rem;}
 .feature-desc{font-size:0.78rem;color:var(--text2);line-height:1.8;}
 .feature-tag{display:inline-block;font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim2);padding:0.2rem 0.5rem;margin-top:0.75rem;font-weight:600;}
 
+/* ── PIPELINE ── */
 .pipeline-list{display:flex;flex-direction:column;gap:1px;background:var(--border);}
 .pipeline-item{background:var(--surface);padding:0.85rem 1.5rem;display:flex;align-items:center;gap:1.25rem;transition:background 0.15s;}
 .pipeline-item:hover{background:var(--surface2);}
@@ -103,6 +111,7 @@ section{position:relative;}
 .pipeline-item-label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:var(--text);}
 .pipeline-item-desc{font-size:0.7rem;color:var(--text3);}
 
+/* ── STOREFRONT ── */
 #storefront{background:var(--surface);}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
 .sf-mockup{background:var(--bg);border:1px solid var(--border2);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
@@ -120,9 +129,16 @@ section{position:relative;}
 .point-dot{width:5px;height:5px;min-width:5px;background:var(--gold);border-radius:50%;margin-top:0.45rem;}
 .point-text{font-size:0.78rem;color:var(--text2);line-height:1.7;}
 
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem;}
+/* ── SOCIAL PROOF STRIP ── */
+.proof-strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 2rem;}
+.proof-strip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
+.proof-num{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold2);line-height:1;}
+.proof-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);margin-top:0.4rem;font-weight:600;}
+
+/* ── PRICING ── */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:4rem;max-width:800px;margin-left:auto;margin-right:auto;}
 .pricing-card{background:var(--surface);border:1px solid var(--border2);padding:2.5rem 2rem;position:relative;transition:all 0.3s;}
-.pricing-card.featured{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,0.05),var(--surface));}
+.pricing-card.featured{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,0.06),var(--surface));}
 .pricing-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-size:0.52rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;padding:0.3rem 1rem;white-space:nowrap;}
 .pricing-tier{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);font-weight:600;margin-bottom:0.75rem;}
 .pricing-price{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--text);line-height:1;}
@@ -133,11 +149,16 @@ section{position:relative;}
 .pricing-features{list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2rem;}
 .pricing-features li{font-size:0.75rem;color:var(--text2);display:flex;gap:0.5rem;align-items:flex-start;line-height:1.5;}
 .pricing-features li::before{content:'—';color:var(--gold);font-size:0.7rem;margin-top:0.05rem;flex-shrink:0;}
-.pricing-cta{display:block;text-align:center;padding:0.8rem;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;text-decoration:none;transition:all 0.2s;border:1px solid var(--border2);color:var(--text2);}
+.pricing-features li.highlight{color:var(--text);font-weight:600;}
+.pricing-features li.highlight::before{content:'★';color:var(--gold);}
+.pricing-cta{display:block;text-align:center;padding:0.85rem;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;text-decoration:none;transition:all 0.2s;border:1px solid var(--border2);color:var(--text2);}
 .pricing-cta:hover{border-color:var(--gold);color:var(--gold);}
 .pricing-card.featured .pricing-cta{background:var(--gold);color:#000;border-color:var(--gold);}
 .pricing-card.featured .pricing-cta:hover{background:var(--gold2);}
+.pricing-trial-note{text-align:center;font-size:0.65rem;color:var(--text3);margin-top:1.25rem;letter-spacing:0.06em;}
+.pricing-trial-note strong{color:var(--text2);}
 
+/* ── CTA ── */
 #cta{background:linear-gradient(135deg,rgba(201,168,76,0.06) 0%,transparent 60%);}
 footer{border-top:1px solid var(--border);padding:3rem 2rem;}
 .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
@@ -154,18 +175,20 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
 .d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}.d4{transition-delay:0.4s;}
 
 @media(max-width:900px){
-  .nav-links a:not(.nav-btn){display:none;}
+  .nav-links a:not(.nav-btn):not(.nav-login){display:none;}
   .features-grid{grid-template-columns:1fr 1fr;}
   .split{grid-template-columns:1fr;}
   .pricing-grid{grid-template-columns:1fr;}
   .app-sidebar-mock{display:none;}
   .mock-stat-row{grid-template-columns:1fr 1fr;}
+  .proof-strip-inner{grid-template-columns:1fr 1fr;gap:1.5rem;}
 }
 @media(max-width:600px){
   .hero-title{font-size:2.4rem;}
   .features-grid{grid-template-columns:1fr;}
   .footer-inner{flex-direction:column;text-align:center;}
   .footer-links{flex-wrap:wrap;justify-content:center;gap:1rem;}
+  .proof-strip-inner{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
@@ -178,7 +201,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
     <a href="#pipeline">Pipeline</a>
     <a href="#pricing">Pricing</a>
     <a href="https://app.dialtrader.com" class="nav-login nav-btn">Login</a>
-    <a href="https://app.dialtrader.com" class="nav-btn">Get Started</a>
+    <a href="https://app.dialtrader.com" class="nav-btn">Start Free Trial</a>
   </div>
 </nav>
 
@@ -191,11 +214,12 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
   <div class="hero-content">
     <div class="hero-eyebrow">The Watch Trader's Operating System</div>
     <h1 class="hero-title">Every Watch.<br>Every Deal.<br><em>One Place.</em></h1>
-    <p class="hero-sub">Track inventory, manage the deal pipeline, generate professional invoices, and publish a <strong>live storefront</strong> — built specifically for pre-owned watch traders.</p>
+    <p class="hero-sub">Track inventory, manage the pipeline, run your CRM, generate invoices, schedule events — and publish a <strong>live branded storefront</strong>. Built specifically for independent watch traders.</p>
     <div class="hero-actions">
-      <a href="https://app.dialtrader.com" class="btn-primary">Start Free →</a>
+      <a href="https://app.dialtrader.com" class="btn-primary">Start 7-Day Free Trial →</a>
       <a href="#features" class="btn-ghost">See Features</a>
     </div>
+    <div class="hero-trial-note">7-day free trial · Credit card required · Cancel anytime</div>
     <div class="hero-scroll">
       <span class="hero-scroll-label">Scroll</span>
       <div class="hero-scroll-line"></div>
@@ -205,8 +229,8 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
 
 <!-- APP MOCKUP -->
 <div class="app-preview">
-  <div class="app-preview-inner">
-    <div class="app-frame reveal">
+  <div class="app-preview-inner reveal">
+    <div class="app-frame">
       <div class="app-frame-bar">
         <div class="app-dot" style="background:#FF5F57"></div>
         <div class="app-dot" style="background:#FEBC2E"></div>
@@ -216,39 +240,67 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
       <div class="app-mockup">
         <div class="app-sidebar-mock">
           <div class="mock-logo">Dial<span>Trader</span></div>
-          <div class="mock-sec">Trading</div>
-          <div class="mock-nav-item active"><span>📊</span>Dashboard</div>
-          <div class="mock-nav-item"><span>⌚</span>Inventory</div>
-          <div class="mock-nav-item"><span>📈</span>Pipeline</div>
-          <div class="mock-nav-item"><span>✅</span>Sold History</div>
-          <div class="mock-sec">Business</div>
-          <div class="mock-nav-item"><span>👤</span>Contacts</div>
-          <div class="mock-nav-item"><span>📄</span>Invoices</div>
+          <div class="mock-nav-item active">📈 Dashboard</div>
+          <div class="mock-nav-item">⌚ Inventory</div>
+          <div class="mock-nav-item">✅ Sold History</div>
+          <div class="mock-nav-item">👥 Contacts</div>
+          <div class="mock-nav-item">📄 Invoices</div>
           <div class="mock-sec">Tools</div>
-          <div class="mock-nav-item"><span>🌐</span>My Storefront</div>
-          <div class="mock-nav-item"><span>💰</span>Tax Report</div>
+          <div class="mock-nav-item">📅 Calendar</div>
+          <div class="mock-nav-item">🌐 My Storefront</div>
+          <div class="mock-nav-item">💰 Tax Report</div>
         </div>
         <div class="app-main-mock">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <div class="mock-page-title">Inventory</div>
-            <div style="background:var(--gold);color:#000;font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;padding:0.3rem 0.8rem;cursor:pointer">+ Add Watch</div>
+            <div class="mock-page-title">Dashboard</div>
+            <div style="background:var(--gold);color:#000;font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;padding:0.3rem 0.8rem;">+ Add Watch</div>
           </div>
           <div class="mock-stat-row">
             <div class="mock-stat"><div class="mock-stat-val">$68,300</div><div class="mock-stat-label">Capital Deployed</div></div>
             <div class="mock-stat"><div class="mock-stat-val">$13,400</div><div class="mock-stat-label">YTD Profit</div></div>
-            <div class="mock-stat"><div class="mock-stat-val">19.6%</div><div class="mock-stat-label">Avg ROI</div></div>
-            <div class="mock-stat"><div class="mock-stat-val">5</div><div class="mock-stat-label">Active Watches</div></div>
+            <div class="mock-stat"><div class="mock-stat-val">+19.6%</div><div class="mock-stat-label">Avg ROI</div></div>
+            <div class="mock-stat"><div class="mock-stat-val">11</div><div class="mock-stat-label">In Inventory</div></div>
           </div>
-          <div class="mock-th-row">
-            <div class="mock-th">Watch</div><div class="mock-th">Stage</div><div class="mock-th">Cost</div><div class="mock-th">Listed</div><div class="mock-th">P&L</div>
+          <div style="display:grid;grid-template-columns:1fr 220px;gap:0.6rem;flex:1;overflow:hidden">
+            <div style="background:var(--surface2);border:1px solid var(--border);padding:0.65rem">
+              <div style="font-size:0.46rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;font-weight:600">This Week</div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border)">
+                <div style="background:var(--surface);padding:0.3rem;text-align:center;font-size:0.42rem;color:var(--text3)">SUN</div>
+                <div style="background:var(--surface);padding:0.3rem;text-align:center;font-size:0.42rem;color:var(--text3)">MON</div>
+                <div style="background:rgba(201,168,76,0.06);padding:0.3rem;text-align:center;font-size:0.42rem;color:var(--gold)">TUE</div>
+                <div style="background:var(--surface);padding:0.3rem;text-align:center;font-size:0.42rem;color:var(--text3)">WED</div>
+                <div style="background:var(--surface);padding:0.3rem;text-align:center;font-size:0.42rem;color:var(--text3)">THU</div>
+                <div style="background:var(--surface);padding:0.3rem;text-align:center;font-size:0.42rem;color:var(--text3)">FRI</div>
+                <div style="background:var(--surface);padding:0.3rem;text-align:center;font-size:0.42rem;color:var(--text3)">SAT</div>
+              </div>
+              <div style="margin-top:0.4rem;display:flex;flex-direction:column;gap:0.2rem">
+                <div style="font-size:0.5rem;padding:0.15rem 0.3rem;background:#2d6a4f;color:#fff;border-radius:2px">📦 Rolex GMT — Purchased</div>
+                <div style="font-size:0.5rem;padding:0.15rem 0.3rem;background:#1d4e89;color:#fff;border-radius:2px">✅ Omega Seamaster — Sold</div>
+                <div style="font-size:0.5rem;padding:0.15rem 0.3rem;background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px">⚡ List on Chrono24</div>
+              </div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);padding:0.65rem;overflow:hidden">
+              <div style="font-size:0.46rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;font-weight:600">Tasks</div>
+              <div style="display:flex;flex-direction:column;gap:0.35rem">
+                <div style="display:flex;gap:0.4rem;align-items:center"><div style="width:10px;height:10px;border-radius:50%;border:1.5px solid var(--border2);flex-shrink:0"></div><div style="font-size:0.56rem;color:var(--text2)">List Rolex on Chrono24</div></div>
+                <div style="display:flex;gap:0.4rem;align-items:center"><div style="width:10px;height:10px;border-radius:50%;border:1.5px solid var(--gold);background:rgba(201,168,76,0.15);flex-shrink:0"></div><div style="font-size:0.56rem;color:var(--gold)">Send invoice to buyer</div></div>
+                <div style="display:flex;gap:0.4rem;align-items:center"><div style="width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0"></div><div style="font-size:0.56rem;color:var(--text3);text-decoration:line-through">Ship Tudor BB58</div></div>
+              </div>
+            </div>
           </div>
-          <div class="mock-row"><div><div class="mock-brand">Rolex</div><div class="mock-model">Submariner 126610LN</div></div><div class="mock-cell"><span class="mock-stage">Listed</span></div><div class="mock-cell">$12,500</div><div class="mock-cell">$14,900</div><div class="mock-profit">+$2,400</div></div>
-          <div class="mock-row"><div><div class="mock-brand">Omega</div><div class="mock-model">Speedmaster 3570.50</div></div><div class="mock-cell"><span class="mock-stage">Acquired</span></div><div class="mock-cell">$4,200</div><div class="mock-cell">$5,500</div><div class="mock-profit">+$1,300</div></div>
-          <div class="mock-row"><div><div class="mock-brand">Patek Philippe</div><div class="mock-model">Aquanaut 5167A</div></div><div class="mock-cell"><span class="mock-stage">Negotiating</span></div><div class="mock-cell">$28,000</div><div class="mock-cell">$33,500</div><div class="mock-profit">+$5,500</div></div>
-          <div class="mock-row"><div><div class="mock-brand">AP</div><div class="mock-model">Royal Oak 15400ST</div></div><div class="mock-cell"><span class="mock-stage">Listed</span></div><div class="mock-cell">$19,800</div><div class="mock-cell">$24,000</div><div class="mock-profit">+$4,200</div></div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-strip-inner">
+    <div class="reveal d1"><div class="proof-num">10</div><div class="proof-label">Pipeline Stages</div></div>
+    <div class="reveal d2"><div class="proof-num">15+</div><div class="proof-label">Listing Platforms</div></div>
+    <div class="reveal d3"><div class="proof-num">∞</div><div class="proof-label">Watches Tracked</div></div>
+    <div class="reveal d4"><div class="proof-num">$0</div><div class="proof-label">Per-Sale Fees</div></div>
   </div>
 </div>
 
@@ -262,12 +314,49 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
       <p class="section-sub">Every feature was designed to solve a real problem in the watch trading workflow — from the moment you buy to the moment the profit hits.</p>
     </div>
     <div class="features-grid" style="margin-top:4rem">
-      <div class="feature-item reveal d1"><div class="feature-icon">⌚</div><div class="feature-title">Full Inventory Management</div><div class="feature-desc">Track every watch with purchase price, all fees, photos, condition, box & papers, and linked contacts. Know your true cost basis and capital deployed at a glance.</div><div class="feature-tag">Cost Basis · Photos · Contacts</div></div>
-      <div class="feature-item reveal d2"><div class="feature-icon">📈</div><div class="feature-title">10-Stage Deal Pipeline</div><div class="feature-desc">Move watches from Sourcing through Acquired, Authenticated, Listed, Negotiating, all the way to Delivered & Paid. Know exactly where every deal stands.</div><div class="feature-tag">Kanban · Stage Tracking</div></div>
-      <div class="feature-item reveal d3"><div class="feature-icon">🌐</div><div class="feature-title">One-Click Storefront</div><div class="feature-desc">Your inventory automatically powers a live public storefront branded to you. Deploy to your own domain in under 5 minutes — no separate website needed.</div><div class="feature-tag">Vercel · Custom Domain · Free Hosting</div></div>
-      <div class="feature-item reveal d1"><div class="feature-icon">📄</div><div class="feature-title">Professional Invoices</div><div class="feature-desc">Generate PDF invoices with your branding instantly. Track paid/unpaid status across Zelle, Venmo, wire, and Apple Pay. Keep every invoice organized in one place.</div><div class="feature-tag">PDF · Multi-payment · Tracking</div></div>
-      <div class="feature-item reveal d2"><div class="feature-icon">👥</div><div class="feature-title">Contact CRM</div><div class="feature-desc">Every buyer and seller in one searchable, filterable list. See their full transaction history, total volume, and profit per relationship. Export for campaigns.</div><div class="feature-tag">Buyers · Sellers · Campaign Export</div></div>
-      <div class="feature-item reveal d3"><div class="feature-icon">💰</div><div class="feature-title">Tax & P&L Reports</div><div class="feature-desc">Filterable P&L by tax year with total revenue, cost basis, gross profit, average ROI, and days held. Export a clean CSV for your accountant at year end.</div><div class="feature-tag">Schedule C · CSV · Year Filter</div></div>
+
+      <div class="feature-item reveal d1">
+        <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg></div>
+        <div class="feature-title">Full Inventory Management</div>
+        <div class="feature-desc">Track every watch with purchase price, all fees, photos, condition, box & papers, and linked contacts. Know your true cost basis at a glance.</div>
+        <div class="feature-tag">Cost Basis · Photos · 10-Stage Pipeline</div>
+      </div>
+
+      <div class="feature-item reveal d2">
+        <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="feature-title">CRM & Contacts</div>
+        <div class="feature-desc">Every buyer and seller in one searchable list. See full transaction history, total volume, and profit per relationship. Filter and export for targeted outreach.</div>
+        <div class="feature-tag">Buyers · Sources · Campaign Export</div>
+      </div>
+
+      <div class="feature-item reveal d3">
+        <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="feature-title">Professional Invoices</div>
+        <div class="feature-desc">Generate branded PDF invoices instantly. Track paid/unpaid status across Zelle, Venmo, wire, and Apple Pay. Store received invoices from your sources too.</div>
+        <div class="feature-tag">PDF · Multi-Payment · Status Tracking</div>
+      </div>
+
+      <div class="feature-item reveal d1">
+        <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="feature-title">Calendar & Tasks</div>
+        <div class="feature-desc">A full calendar that auto-populates your purchase and sale dates. Add events and reminders. Manage a running task list with To Do, In Progress, and Done states — right on your dashboard.</div>
+        <div class="feature-tag">Events · Auto-Sync · Task Manager</div>
+      </div>
+
+      <div class="feature-item reveal d2">
+        <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="feature-title">Tax & P&L Reports</div>
+        <div class="feature-desc">Filterable P&L by tax year with total revenue, cost basis, gross profit, average ROI, and days held. Export a clean CSV for your accountant at year end — no spreadsheet required.</div>
+        <div class="feature-tag">Schedule C · CSV Export · Year Filter</div>
+      </div>
+
+      <div class="feature-item reveal d3">
+        <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="feature-title">Live Public Storefront</div>
+        <div class="feature-desc">Your inventory automatically powers a branded public storefront. Deploy to your own domain in minutes — no coding, no separate website, no monthly hosting fees.</div>
+        <div class="feature-tag">Pro Plan · Custom Domain · Free Hosting</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -280,16 +369,16 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
         <div class="section-eyebrow">Deal Pipeline</div>
         <h2 class="section-title">Know Where Every Watch<br><em>Stands Right Now</em></h2>
         <div class="section-rule"></div>
-        <p class="section-sub">Ten stages take a watch from initial sourcing all the way to delivered and paid. Move deals forward with one tap. Never lose track of where something is.</p>
+        <p class="section-sub">Ten stages take a watch from initial sourcing all the way to delivered and paid. Move deals forward with one tap. Never lose track of where something is in the process.</p>
         <div style="margin-top:2rem">
-          <a href="https://app.dialtrader.com" class="btn-primary">Try It Free →</a>
+          <a href="https://app.dialtrader.com" class="btn-primary">Start Free Trial →</a>
         </div>
       </div>
       <div class="pipeline-list reveal d2">
         <div class="pipeline-item active"><div class="pipeline-num">1</div><div><div class="pipeline-item-label">Sourcing</div><div class="pipeline-item-desc">Potential deal identified</div></div></div>
         <div class="pipeline-item"><div class="pipeline-num">2</div><div><div class="pipeline-item-label">Acquired</div><div class="pipeline-item-desc">Watch purchased, in hand</div></div></div>
         <div class="pipeline-item"><div class="pipeline-num">3</div><div><div class="pipeline-item-label">Authenticated</div><div class="pipeline-item-desc">Condition & papers verified</div></div></div>
-        <div class="pipeline-item"><div class="pipeline-num">5</div><div><div class="pipeline-item-label">Listed</div><div class="pipeline-item-desc">Active on marketplace or storefront</div></div></div>
+        <div class="pipeline-item"><div class="pipeline-num">5</div><div><div class="pipeline-item-label">Listed</div><div class="pipeline-item-desc">Active on platform or storefront</div></div></div>
         <div class="pipeline-item"><div class="pipeline-num">7</div><div><div class="pipeline-item-label">Sale Agreed</div><div class="pipeline-item-desc">Price locked, invoice sent</div></div></div>
         <div class="pipeline-item"><div class="pipeline-num">9</div><div><div class="pipeline-item-label">Shipped</div><div class="pipeline-item-desc">In transit to buyer</div></div></div>
         <div class="pipeline-item done"><div class="pipeline-num">10</div><div><div class="pipeline-item-label" style="color:var(--green)">Delivered & Paid</div><div class="pipeline-item-desc">Deal complete, profit recorded</div></div></div>
@@ -304,7 +393,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
     <div class="split">
       <div class="sf-mockup reveal">
         <div class="sf-head">
-          <div class="sf-logo-mock">SourceMax <span style="font-style:italic">Luxury</span></div>
+          <div class="sf-logo-mock">Tolliver <span style="font-style:italic">Timepieces</span></div>
           <div class="sf-tag-mock">Pre-Owned Luxury Timepieces · Conway, AR</div>
         </div>
         <div class="sf-grid">
@@ -317,13 +406,13 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
         </div>
       </div>
       <div class="reveal d2">
-        <div class="section-eyebrow">Your Public Storefront</div>
+        <div class="section-eyebrow">Pro Plan — Your Public Storefront</div>
         <h2 class="section-title">A Live Website,<br><em>Already Built</em></h2>
         <div class="section-rule"></div>
         <p class="section-sub">Add a watch to inventory and it instantly appears on your branded storefront. Deploy to your own domain in minutes — no coding, no monthly website fees.</p>
         <div class="points">
           <div class="point"><div class="point-dot"></div><div class="point-text">Updates live as you add, edit, or sell watches</div></div>
-          <div class="point"><div class="point-dot"></div><div class="point-text">6 color themes and 5 font pairings — styled to match your brand</div></div>
+          <div class="point"><div class="point-dot"></div><div class="point-text">6 color themes and 5 font pairings — styled to your brand</div></div>
           <div class="point"><div class="point-dot"></div><div class="point-text">Built-in inquiry form so buyers can contact you directly</div></div>
           <div class="point"><div class="point-dot"></div><div class="point-text">Recently Sold section to show track record and build trust</div></div>
           <div class="point"><div class="point-dot"></div><div class="point-text">Free hosting on Vercel — deploy to your own domain in 5 minutes</div></div>
@@ -340,57 +429,52 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
       <div class="section-eyebrow">Pricing</div>
       <h2 class="section-title">Simple, <em>Honest</em> Pricing</h2>
       <div class="section-rule" style="margin:0 auto 1.5rem"></div>
-      <p class="section-sub" style="margin:0 auto">No percentage cuts on your deals. No per-transaction fees. Just a flat monthly rate for the tools you need.</p>
+      <p class="section-sub" style="margin:0 auto">No percentage cuts. No per-transaction fees. A flat monthly rate for everything you need to run your watch trading business.</p>
     </div>
     <div class="pricing-grid">
+
       <div class="pricing-card reveal d1">
-        <div class="pricing-tier">Starter</div>
-        <div class="pricing-price"><sup>$</sup>0<span> / mo</span></div>
-        <div class="pricing-desc">Everything you need to track your trades and run your business.</div>
+        <div class="pricing-tier">Indie</div>
+        <div class="pricing-price"><sup>$</sup>25<span> / mo</span></div>
+        <div class="pricing-desc">The full DialTrader platform for the independent watch trader. Everything you need to run a professional operation.</div>
         <div class="pricing-rule"></div>
         <ul class="pricing-features">
           <li>Full inventory management</li>
           <li>10-stage deal pipeline</li>
           <li>Sold history & P&L tracking</li>
-          <li>Contact CRM</li>
-          <li>Invoice generation & tracking</li>
+          <li>Contact CRM — buyers & sellers</li>
+          <li class="highlight">Calendar with auto watch sync</li>
+          <li class="highlight">Dashboard task manager</li>
+          <li>Professional PDF invoices</li>
           <li>Tax report & CSV export</li>
           <li>Smart CSV import</li>
+          <li>Mobile-ready app</li>
         </ul>
-        <a href="https://app.dialtrader.com" class="pricing-cta">Get Started Free</a>
+        <a href="https://app.dialtrader.com" class="pricing-cta">Start 7-Day Free Trial</a>
       </div>
+
       <div class="pricing-card featured reveal d2">
         <div class="pricing-badge">Most Popular</div>
-        <div class="pricing-tier">Professional</div>
-        <div class="pricing-price"><sup>$</sup>19<span> / mo</span></div>
-        <div class="pricing-desc">Add a live branded storefront and take your business public.</div>
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-price"><sup>$</sup>39<span> / mo</span></div>
+        <div class="pricing-desc">Everything in Indie, plus a live branded storefront connected to your inventory — your own watch dealership online.</div>
         <div class="pricing-rule"></div>
         <ul class="pricing-features">
-          <li>Everything in Starter</li>
-          <li>Live public storefront</li>
-          <li>Custom domain support</li>
+          <li>Everything in Indie</li>
+          <li class="highlight">Live public storefront website</li>
+          <li class="highlight">Custom domain support</li>
           <li>6 themes & 5 font pairings</li>
           <li>Buyer inquiry form</li>
           <li>Recently Sold section</li>
+          <li>Free Vercel hosting</li>
           <li>Priority support</li>
         </ul>
-        <a href="https://app.dialtrader.com" class="pricing-cta">Start Free Trial</a>
+        <a href="https://app.dialtrader.com" class="pricing-cta">Start 7-Day Free Trial</a>
       </div>
-      <div class="pricing-card reveal d3">
-        <div class="pricing-tier">Teams — Coming Soon</div>
-        <div class="pricing-price" style="font-size:1.8rem;padding-top:0.4rem;line-height:1.2">Multi-User<br>Access</div>
-        <div class="pricing-desc">Shared inventory, multiple users, and advanced reporting for growing operations.</div>
-        <div class="pricing-rule"></div>
-        <ul class="pricing-features">
-          <li>Everything in Professional</li>
-          <li>Multiple team members</li>
-          <li>Shared inventory pool</li>
-          <li>Role-based permissions</li>
-          <li>Advanced analytics dashboard</li>
-          <li>Dedicated support</li>
-        </ul>
-        <a href="mailto:nmtarbiz@gmail.com?subject=DialTrader Teams Waitlist" class="pricing-cta">Join Waitlist</a>
-      </div>
+
+    </div>
+    <div class="pricing-trial-note reveal">
+      <strong>7-day free trial on both plans.</strong> Credit card required to start. Cancel before the trial ends and you won't be charged.
     </div>
   </div>
 </section>
@@ -401,11 +485,12 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
     <div class="reveal" style="max-width:640px;margin:0 auto">
       <div class="section-eyebrow">Ready to Start?</div>
       <h2 class="section-title">Your Entire Watch Business,<br><em>Organized Today</em></h2>
-      <p class="section-sub" style="margin:0 auto 2.5rem">Import your existing inventory in minutes using any spreadsheet. Free forever on the Starter plan — no credit card required.</p>
+      <p class="section-sub" style="margin:0 auto 2.5rem">Import your existing inventory in minutes using any spreadsheet. Your calendar, contacts, invoices, and pipeline — all in one place from day one.</p>
       <div class="hero-actions">
-        <a href="https://app.dialtrader.com" class="btn-primary">Create Free Account →</a>
+        <a href="https://app.dialtrader.com" class="btn-primary">Start 7-Day Free Trial →</a>
         <a href="https://app.dialtrader.com" class="btn-ghost">Member Login</a>
       </div>
+      <div class="hero-trial-note" style="opacity:1;animation:none;margin-top:1.25rem">7-day free trial · Credit card required · Cancel anytime</div>
     </div>
   </div>
 </section>
@@ -416,6 +501,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;}
     <div class="footer-logo">Dial<span>Trader</span></div>
     <div class="footer-links">
       <a href="#features">Features</a>
+      <a href="#pipeline">Pipeline</a>
       <a href="#pricing">Pricing</a>
       <a href="https://app.dialtrader.com">App Login</a>
       <a href="mailto:nmtarbiz@gmail.com">Contact</a>
@@ -430,7 +516,7 @@ window.addEventListener('scroll',()=>{
 });
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+},{threshold:0.12});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
